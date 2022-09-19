@@ -1,0 +1,59 @@
+{
+    "name":"pthreat/sql-query-builder",
+    "description":"SQL QueryInterface BuilderInterface supporting bindings and complex query generation.",
+    "keywords": [ "sql", "mysql", "query", "builder", "query builder", "orm"],
+    "type":"library",
+    "license":"MIT",
+    "homepage":"https://github.com/pthreat/php-sql-query-builder",
+    "authors":
+    [
+        {
+            "name":"Nil Portugués Calderó",
+            "email":"contact@nilportugues.com",
+            "homepage":"http://nilportugues.com",
+            "role":"Original project lead developer"
+        },
+        {
+            "name":"Woody Gilk",
+            "email":"woody.gilk@gmail.com",
+            "homepage":"http://shadowhand.me/",
+            "role":"Original project contributor"
+        },
+        {
+            "name":"Federico Stange",
+            "email":"jpfstange@gmail.com",
+            "homepage":"https://github.com/pthreat",
+            "role":"Maintainer / Forker"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "NilPortugues\\Sql\\QueryBuilder\\":"src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "NilPortugues\\Tests\\Sql\\QueryBuilder\\":"tests/"
+        }
+    },
+    "require":
+    {
+        "php": ">=7.0",
+        "nilportugues/sql-query-formatter": "~1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "fabpot/php-cs-fixer": "~1.9",
+        "nilportugues/php_backslasher": "~0.2"
+    },
+    "config":
+    {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
