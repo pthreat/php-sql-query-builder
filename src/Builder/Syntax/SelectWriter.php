@@ -364,8 +364,8 @@ class SelectWriter extends AbstractBaseWriter
         $limit = '';
 
         if ($mask !== '00') {
-            $start = $this->placeholderWriter->add($select->getLimitStart());
-            $count = $this->placeholderWriter->add($select->getLimitCount());
+            $start = (int)$select->getLimitStart();
+            $count = (int)$select->getLimitCount();
 
             $limit = "LIMIT {$start}, {$count}";
         }
