@@ -128,10 +128,7 @@ class Where
         return \unserialize(\serialize($this));
     }
 
-    /**
-     * @return bool
-     */
-    public function isEmpty()
+    public function isEmpty() : bool
     {
         $empty = \array_merge(
             $this->comparisons,
@@ -145,25 +142,15 @@ class Where
             $this->exists
         );
 
-        return 0 == \count($empty);
+        return 0 === \count($empty);
     }
 
-    /**
-     * @return string
-     */
-    public function getConjunction()
+    public function getConjunction() : string
     {
         return $this->conjunction;
     }
 
-    /**
-     * @param string $operator
-     *
-     * @return $this
-     *
-     * @throws QueryException
-     */
-    public function conjunction($operator)
+    public function conjunction($operator) : Where
     {
         if (false === \in_array(
                 $operator,
@@ -179,22 +166,13 @@ class Where
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getSubWheres()
+    public function getSubWheres() : array
     {
         return $this->subWheres;
     }
 
-    /**
-     * @param $operator
-     *
-     * @return Where
-     */
-    public function subWhere($operator = 'OR')
+    public function subWhere($operator = 'OR') : Where
     {
-        /** @var Where $filter */
         $filter = QueryFactory::createWhere($this->query);
         $filter->conjunction($operator);
         $filter->setTable($this->getTable());
@@ -204,10 +182,7 @@ class Where
         return $filter;
     }
 
-    /**
-     * @return Table
-     */
-    public function getTable()
+    public function getTable() : Table
     {
         return $this->query->getTable();
     }
@@ -215,11 +190,9 @@ class Where
     /**
      * Used for subWhere query building.
      *
-     * @param Table $table string
-     *
-     * @return $this
+     * @param Table|string $table string
      */
-    public function setTable($table)
+    public function setTable($table) : Where
     {
         $this->table = $table;
 
@@ -228,36 +201,18 @@ class Where
 
     /**
      * equals alias.
-     *
-     * @param     $column
-     * @param int $value
-     *
-     * @return static
      */
-    public function eq($column, $value)
+    public function eq($column, $value) : Where
     {
         return $this->equals($column, $value);
     }
 
-    /**
-     * @param $column
-     * @param $value
-     *
-     * @return static
-     */
-    public function equals($column, $value)
+    public function equals($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_EQUAL);
     }
 
-    /**
-     * @param        $column
-     * @param        $value
-     * @param string $operator
-     *
-     * @return $this
-     */
-    protected function compare($column, $value, $operator)
+    protected function compare($column, $value, $operator) : Where
     {
         $column = $this->prepareColumn($column);
 
@@ -288,102 +243,47 @@ class Where
         return SyntaxFactory::createColumn($newColumn, $this->getTable());
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return static
-     */
-    public function notEquals($column, $value)
+    public function notEquals($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_NOT_EQUAL);
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return static
-     */
-    public function greaterThan($column, $value)
+    public function greaterThan($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_GREATER_THAN);
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return static
-     */
-    public function greaterThanOrEqual($column, $value)
+    public function greaterThanOrEqual($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_GREATER_THAN_OR_EQUAL);
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return static
-     */
-    public function lessThan($column, $value)
+    public function lessThan($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_LESS_THAN);
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return static
-     */
-    public function lessThanOrEqual($column, $value)
+    public function lessThanOrEqual($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_LESS_THAN_OR_EQUAL);
     }
 
-    /**
-     * @param string $column
-     * @param        $value
-     *
-     * @return static
-     */
-    public function like($column, $value)
+    public function like($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_LIKE);
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return static
-     */
-    public function notLike($column, $value)
+    public function notLike($column, $value) : Where
     {
         return $this->compare($column, $value, self::OPERATOR_NOT_LIKE);
     }
 
-    /**
-     * @param string[] $columns
-     * @param mixed[]  $values
-     *
-     * @return static
-     */
-    public function match(array $columns, array $values)
+    public function match(array $columns, array $values) : Where
     {
         return $this->genericMatch($columns, $values, 'natural');
     }
 
-    /**
-     * @param string[] $columns
-     * @param mixed[]  $values
-     * @param string   $mode
-     *
-     * @return $this
-     */
-    protected function genericMatch(array &$columns, array &$values, $mode)
+    protected function genericMatch(array &$columns, array &$values, $mode) : Where
     {
         $this->match[] = [
             'columns' => $columns,
@@ -394,89 +294,46 @@ class Where
         return $this;
     }
 
-    /**
-     * @param string $literal
-     *
-     * @return $this
-     */
-    public function asLiteral($literal)
+    public function asLiteral($literal) : Where
     {
         $this->comparisons[] = $literal;
 
         return $this;
     }
 
-    /**
-     * @param string[] $columns
-     * @param mixed[]  $values
-     *
-     * @return $this
-     */
-    public function matchBoolean(array $columns, array $values)
+    public function matchBoolean(array $columns, array $values) : Where
     {
         return $this->genericMatch($columns, $values, 'boolean');
     }
 
-    /**
-     * @param string[] $columns
-     * @param mixed[]  $values
-     *
-     * @return $this
-     */
-    public function matchWithQueryExpansion(array $columns, array $values)
+    public function matchWithQueryExpansion(array $columns, array $values) : Where
     {
         return $this->genericMatch($columns, $values, 'query_expansion');
     }
 
-    /**
-     * @param string $column
-     * @param int[]  $values
-     *
-     * @return $this
-     */
-    public function in($column, array $values)
+    public function in($column, array $values) : Where
     {
         $this->ins[$column] = $values;
 
         return $this;
     }
 
-    /**
-     * @param string $column
-     * @param int[]  $values
-     *
-     * @return $this
-     */
-    public function notIn($column, array $values)
+    public function notIn($column, array $values) : Where
     {
         $this->notIns[$column] = $values;
 
         return $this;
     }
 
-    /**
-     * @param string $column
-     * @param int    $a
-     * @param int    $b
-     *
-     * @return $this
-     */
-    public function between($column, $a, $b)
+    public function between($column, $a, $b) : Where
     {
-        $column = $this->prepareColumn($column);
-        $this->betweens[] = ['subject' => $column, 'a' => $a, 'b' => $b];
+        $prepColumn = $this->prepareColumn($column);
+        $this->betweens[] = ['subject' => $prepColumn, 'a' => $a, 'b' => $b];
 
         return $this;
     }
 
-    /**
-     * @param string $column
-     * @param int    $a
-     * @param int    $b
-     *
-     * @return $this
-     */
-    public function notBetween($column, $a, $b)
+    public function notBetween($column, $a, $b) : Where
     {
         $column = $this->prepareColumn($column);
         $this->notBetweens[] = ['subject' => $column, 'a' => $a, 'b' => $b];
@@ -484,12 +341,7 @@ class Where
         return $this;
     }
 
-    /**
-     * @param string $column
-     *
-     * @return static
-     */
-    public function isNull($column)
+    public function isNull($column) : Where
     {
         $column = $this->prepareColumn($column);
         $this->isNull[] = ['subject' => $column];
@@ -497,12 +349,7 @@ class Where
         return $this;
     }
 
-    /**
-     * @param string $column
-     *
-     * @return $this
-     */
-    public function isNotNull($column)
+    public function isNotNull($column) : Where
     {
         $column = $this->prepareColumn($column);
         $this->isNotNull[] = ['subject' => $column];
@@ -510,13 +357,7 @@ class Where
         return $this;
     }
 
-    /**
-     * @param string $column
-     * @param int    $value
-     *
-     * @return $this
-     */
-    public function addBitClause($column, $value)
+    public function addBitClause($column, $value) : Where
     {
         $column = $this->prepareColumn($column);
         $this->booleans[] = ['subject' => $column, 'value' => $value];
@@ -524,90 +365,57 @@ class Where
         return $this;
     }
 
-    /**
-     * @param Select $select
-     *
-     * @return $this
-     */
-    public function exists(Select $select)
+    public function exists(Select $select) : Where
     {
         $this->exists[] = $select;
 
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getExists()
+    public function getExists() : array
     {
         return $this->exists;
     }
 
-    /**
-     * @param Select $select
-     *
-     * @return $this
-     */
-    public function notExists(Select $select)
+    public function notExists(Select $select) : Where
     {
         $this->notExists[] = $select;
 
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getNotExists()
+    public function getNotExists() : array
+
     {
         return $this->notExists;
     }
 
-    /**
-     * @return array
-     */
-    public function getMatches()
+    public function getMatches() : array
     {
         return $this->match;
     }
 
-    /**
-     * @return array
-     */
-    public function getIns()
+    public function getIns() : array
     {
         return $this->ins;
     }
 
-    /**
-     * @return array
-     */
-    public function getNotIns()
+    public function getNotIns() : array
     {
         return $this->notIns;
     }
 
-    /**
-     * @return array
-     */
-    public function getBetweens()
+    public function getBetweens() : array
     {
         return $this->betweens;
     }
 
-    /**
-     * @return array
-     */
-    public function getNotBetweens()
+    public function getNotBetweens() : array
     {
         return $this->notBetweens;
     }
 
-    /**
-     * @return array
-     */
-    public function getBooleans()
+    public function getBooleans() : array
     {
         return $this->booleans;
     }
@@ -615,31 +423,22 @@ class Where
     /**
      * @return array
      */
-    public function getComparisons()
+    public function getComparisons() : array
     {
         return $this->comparisons;
     }
 
-    /**
-     * @return array
-     */
-    public function getNotNull()
+    public function getNotNull() : array
     {
         return $this->isNotNull;
     }
 
-    /**
-     * @return array
-     */
-    public function getNull()
+    public function getNull() : array
     {
         return $this->isNull;
     }
-    
-    /**
-    * @return QueryInterface
-    */
-    public function end()
+
+    public function end() : QueryInterface
     {
        return $this->query;
     }
