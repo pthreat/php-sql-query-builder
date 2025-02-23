@@ -40,7 +40,7 @@ class Column implements QueryPartInterface
      * @param string $alias
      * @throws QueryException
      */
-    public function __construct(string $name, string $table, string $alias = '')
+    public function __construct(string $name, string $table, mixed $alias = '')
     {
         $this->setName($name);
         $this->setTable($table);
