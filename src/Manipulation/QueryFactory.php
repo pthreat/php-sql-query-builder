@@ -51,7 +51,7 @@ final class QueryFactory
     }
 
     /**
-     * @param string $table
+     * @param string|null $table
      *
      * @return Delete
      */

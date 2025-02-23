@@ -23,7 +23,7 @@ final class SyntaxFactory
      *
      * @return array
      */
-    public static function createColumns(array &$arguments, $table = null)
+    public static function createColumns(array &$arguments, Table|null $table = null)
     {
         $createdColumns = [];
 
@@ -52,7 +52,7 @@ final class SyntaxFactory
      *
      * @return Column
      */
-    public static function createColumn(array &$argument, $table = null)
+    public static function createColumn(array &$argument, Table|null $table = null)
     {
         $columnName = \array_values($argument);
         $columnName = $columnName[0];

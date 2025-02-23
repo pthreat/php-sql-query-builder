@@ -104,33 +104,33 @@ class Select extends AbstractBaseQuery
     }
 
     /**
-     * @param string   $table
-     * @param string   $selfColumn
-     * @param string   $refColumn
+     * @param string $table
+     * @param string|null $selfColumn
+     * @param string|null $refColumn
      * @param string[] $columns
      *
      * @return Select
      */
-    public function leftJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
+    public function leftJoin(string $table, string|null $selfColumn = null, string|null $refColumn = null, array $columns = [])
     {
         return $this->joinQuery->leftJoin($table, $selfColumn, $refColumn, $columns);
     }
 
     /**
-     * @param string   $table
-     * @param string   $selfColumn
-     * @param string   $refColumn
+     * @param string $table
+     * @param string|null $selfColumn
+     * @param string|null $refColumn
      * @param string[] $columns
-     * @param string   $joinType
+     * @param string|null $joinType
      *
      * @return Select
      */
     public function join(
-        $table,
-        $selfColumn = null,
-        $refColumn = null,
-        $columns = [],
-        $joinType = null
+        string $table,
+        string|null $selfColumn = null,
+        string|null $refColumn = null,
+        array $columns = [],
+        string|null $joinType = null
     ) {
         return $this->joinQuery->join($table, $selfColumn, $refColumn, $columns, $joinType);
     }
@@ -152,7 +152,7 @@ class Select extends AbstractBaseQuery
      *
      * @return Select
      */
-    public function addJoin(Select $select, $selfColumn, $refColumn)
+    public function addJoin(Select $select, string $selfColumn, string $refColumn)
     {
         return $this->joinQuery->addJoin($select, $selfColumn, $refColumn);
     }
@@ -170,42 +170,42 @@ class Select extends AbstractBaseQuery
     }
 
     /**
-     * @param string   $table
-     * @param string   $selfColumn
-     * @param string   $refColumn
+     * @param string $table
+     * @param string|null $selfColumn
+     * @param string|null $refColumn
      * @param string[] $columns
      *
+     * @return Select
      * @internal param null $selectClass
      *
-     * @return Select
      */
-    public function rightJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
+    public function rightJoin(string $table, string|null $selfColumn = null, string|null $refColumn = null, array $columns = [])
     {
         return $this->joinQuery->rightJoin($table, $selfColumn, $refColumn, $columns);
     }
 
     /**
-     * @param string   $table
-     * @param string   $selfColumn
-     * @param string   $refColumn
+     * @param string $table
+     * @param string|null $selfColumn
+     * @param string|null $refColumn
      * @param string[] $columns
      *
      * @return Select
      */
-    public function crossJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
+    public function crossJoin(string $table, string|null $selfColumn = null, string|null $refColumn = null, array $columns = [])
     {
         return $this->joinQuery->crossJoin($table, $selfColumn, $refColumn, $columns);
     }
 
     /**
-     * @param string   $table
-     * @param string   $selfColumn
-     * @param string   $refColumn
+     * @param string $table
+     * @param string|null $selfColumn
+     * @param string|null $refColumn
      * @param string[] $columns
      *
      * @return Select
      */
-    public function innerJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
+    public function innerJoin(string $table, string|null $selfColumn = null, string|null $refColumn = null, array $columns = [])
     {
         return $this->joinQuery->innerJoin($table, $selfColumn, $refColumn, $columns);
     }
@@ -309,7 +309,7 @@ class Select extends AbstractBaseQuery
      *
      * @return ColumnQuery
      */
-    public function setFunctionAsColumn($funcName, array $arguments, $alias)
+    public function setFunctionAsColumn(string $funcName, array $arguments, string $alias)
     {
         return $this->columnQuery->setFunctionAsColumn($funcName, $arguments, $alias);
     }
@@ -367,7 +367,7 @@ class Select extends AbstractBaseQuery
      *
      * @return ColumnQuery
      */
-    public function count($columnName = '*', $alias = '')
+    public function count(string $columnName = '*', string $alias = '')
     {
         return $this->columnQuery->count($columnName, $alias);
     }
@@ -531,7 +531,7 @@ class Select extends AbstractBaseQuery
     /**
      * @param string $column
      * @param string $direction
-     * @param null   $table
+     * @param string|null $table
      *
      * @return $this
      */

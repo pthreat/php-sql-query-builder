@@ -77,7 +77,7 @@ class JoinQuery
      *
      * @return Select
      */
-    public function leftJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function leftJoin($table, mixed $selfColumn = null, mixed $refColumn = null, array $columns = [])
     {
         return $this->join($table, $selfColumn, $refColumn, $columns, self::JOIN_LEFT);
     }
@@ -93,10 +93,10 @@ class JoinQuery
      */
     public function join(
         $table,
-        $selfColumn = null,
-        $refColumn = null,
-        $columns = [],
-        $joinType = null
+        mixed $selfColumn = null,
+        mixed $refColumn = null,
+        array $columns = [],
+        string|null  $joinType = null
     ) {
         if (!isset($this->joins[$table])) {
             $select = QueryFactory::createSelect($table);
@@ -116,7 +116,7 @@ class JoinQuery
      *
      * @return Select
      */
-    public function addJoin(Select $select, $selfColumn, $refColumn)
+    public function addJoin(Select $select, mixed $selfColumn, mixed $refColumn)
     {
         $select->isJoin(true);
         $table = $select->getTable()->getName();
@@ -161,7 +161,7 @@ class JoinQuery
      *
      * @return Select
      */
-    public function rightJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function rightJoin(string $table, mixed $selfColumn = null, mixed $refColumn = null, array $columns = [])
     {
         return $this->join($table, $selfColumn, $refColumn, $columns, self::JOIN_RIGHT);
     }
@@ -174,7 +174,7 @@ class JoinQuery
      *
      * @return Select
      */
-    public function crossJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function crossJoin(string $table, mixed $selfColumn = null, mixed $refColumn = null, array $columns = [])
     {
         return $this->join($table, $selfColumn, $refColumn, $columns, self::JOIN_CROSS);
     }
@@ -187,7 +187,7 @@ class JoinQuery
      *
      * @return Select
      */
-    public function innerJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function innerJoin($table, mixed $selfColumn = null, mixed $refColumn = null, array $columns = [])
     {
         return $this->join($table, $selfColumn, $refColumn, $columns, self::JOIN_INNER);
     }

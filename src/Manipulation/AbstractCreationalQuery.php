@@ -24,7 +24,7 @@ abstract class AbstractCreationalQuery extends AbstractBaseQuery
      * @param string $table
      * @param array  $values
      */
-    public function __construct($table = null, array $values = null)
+    public function __construct(string|null $table = null, array|null $values = null)
     {
         if (isset($table)) {
             $this->setTable($table);

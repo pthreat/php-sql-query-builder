@@ -97,7 +97,7 @@ class ColumnQuery
     /**
      * @param string $column
      * @param string $direction
-     * @param null   $table
+     * @param string|null   $table
      *
      * @return Select
      */

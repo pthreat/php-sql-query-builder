@@ -39,7 +39,7 @@ class Table
      * @param        $name
      * @param string $schema
      */
-    public function __construct($name, $schema = null)
+    public function __construct($name, mixed $schema = null)
     {
         $this->name = $name;
 

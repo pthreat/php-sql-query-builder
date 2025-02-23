@@ -21,9 +21,9 @@ class Delete extends AbstractBaseQuery
     protected $limitStart;
 
     /**
-     * @param string $table
+     * @param string|null $table
      */
-    public function __construct($table = null)
+    public function __construct(string|null $table = null)
     {
         if (isset($table)) {
             $this->setTable($table);
