@@ -74,7 +74,7 @@ class Select extends AbstractBaseQuery
      * @param string $table
      * @param array  $columns
      */
-    public function __construct($table = null, array $columns = null)
+    public function __construct(string|null $table = null, array|null $columns = null)
     {
         if (isset($table)) {
             $this->setTable($table);
@@ -111,7 +111,7 @@ class Select extends AbstractBaseQuery
      *
      * @return Select
      */
-    public function leftJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function leftJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
     {
         return $this->joinQuery->leftJoin($table, $selfColumn, $refColumn, $columns);
     }
@@ -179,7 +179,7 @@ class Select extends AbstractBaseQuery
      *
      * @return Select
      */
-    public function rightJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function rightJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
     {
         return $this->joinQuery->rightJoin($table, $selfColumn, $refColumn, $columns);
     }
@@ -192,7 +192,7 @@ class Select extends AbstractBaseQuery
      *
      * @return Select
      */
-    public function crossJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function crossJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
     {
         return $this->joinQuery->crossJoin($table, $selfColumn, $refColumn, $columns);
     }
@@ -205,7 +205,7 @@ class Select extends AbstractBaseQuery
      *
      * @return Select
      */
-    public function innerJoin($table, $selfColumn = null, $refColumn = null, $columns = [])
+    public function innerJoin($table, string|null $selfColumn = null, string|null $refColumn = null, $columns = [])
     {
         return $this->joinQuery->innerJoin($table, $selfColumn, $refColumn, $columns);
     }
@@ -535,7 +535,7 @@ class Select extends AbstractBaseQuery
      *
      * @return $this
      */
-    public function orderBy($column, $direction = OrderBy::ASC, $table = null)
+    public function orderBy($column, $direction = OrderBy::ASC, string|null $table = null)
     {
         $current = parent::orderBy($column, $direction, $table);
         if ($this->getParentQuery() != null) {

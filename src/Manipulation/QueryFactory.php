@@ -23,7 +23,7 @@ final class QueryFactory
      *
      * @return Select
      */
-    public static function createSelect($table = null, array $columns = null)
+    public static function createSelect(string|null $table = null, array|null $columns = null)
     {
         return new Select($table, $columns);
     }
@@ -34,7 +34,7 @@ final class QueryFactory
      *
      * @return Insert
      */
-    public static function createInsert($table = null, array $values = null)
+    public static function createInsert(string|null $table = null, array|null $values = null)
     {
         return new Insert($table, $values);
     }
@@ -45,7 +45,7 @@ final class QueryFactory
      *
      * @return Update
      */
-    public static function createUpdate($table = null, array $values = null)
+    public static function createUpdate(string|null $table = null, array|null $values = null)
     {
         return new Update($table, $values);
     }
@@ -55,7 +55,7 @@ final class QueryFactory
      *
      * @return Delete
      */
-    public static function createDelete($table = null)
+    public static function createDelete(string|null $table = null)
     {
         return new Delete($table);
     }

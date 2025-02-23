@@ -59,7 +59,7 @@ class ColumnQuery
      * @param JoinQuery $joinQuery
      * @param array     $columns
      */
-    public function __construct(Select $select, JoinQuery $joinQuery, array $columns = null)
+    public function __construct(Select $select, JoinQuery $joinQuery, array|null $columns = null)
     {
         $this->select = $select;
         $this->joinQuery = $joinQuery;
@@ -101,7 +101,7 @@ class ColumnQuery
      *
      * @return Select
      */
-    public function orderBy($column, $direction = OrderBy::ASC, $table = null)
+    public function orderBy($column, $direction = OrderBy::ASC, string|null $table = null)
     {
         return $this->select->orderBy($column, $direction, $table);
     }

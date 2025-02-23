@@ -221,7 +221,7 @@ abstract class AbstractBaseQuery implements QueryInterface, QueryPartInterface
      *
      * @return $this
      */
-    public function orderBy($column, $direction = OrderBy::ASC, $table = null)
+    public function orderBy($column, $direction = OrderBy::ASC, string|null $table = null)
     {
         $newColumn = array($column);
         $column = SyntaxFactory::createColumn($newColumn, \is_null($table) ? $this->getTable() : $table);
