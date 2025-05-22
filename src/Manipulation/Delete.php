@@ -21,7 +21,7 @@ class Delete extends AbstractBaseQuery
     protected $limitStart;
 
     /**
-     * @param string|null $table
+     * @param string $table
      */
     public function __construct(string|null $table = null)
     {

@@ -55,9 +55,9 @@ class ColumnQuery
     protected $joinQuery;
 
     /**
-     * @param Select $select
+     * @param Select    $select
      * @param JoinQuery $joinQuery
-     * @param array|null $columns
+     * @param array     $columns
      */
     public function __construct(Select $select, JoinQuery $joinQuery, array|null $columns = null)
     {
@@ -97,7 +97,7 @@ class ColumnQuery
     /**
      * @param string $column
      * @param string $direction
-     * @param string|null   $table
+     * @param null   $table
      *
      * @return Select
      */
