@@ -24,7 +24,11 @@ abstract class AbstractCreationalQuery extends AbstractBaseQuery
      * @param string $table
      * @param array  $values
      */
-    public function __construct(string|null $table = null, array|null $values = null)
+    public function __construct(
+        string|null $table = null,
+        array|null $values = null,
+        private bool $ignore=false
+    )
     {
         if (isset($table)) {
             $this->setTable($table);
@@ -33,6 +37,11 @@ abstract class AbstractCreationalQuery extends AbstractBaseQuery
         if (!empty($values)) {
             $this->setValues($values);
         }
+    }
+
+    public function isIgnore() : bool
+    {
+        return $this->ignore;
     }
 
     /**

@@ -59,7 +59,8 @@ class InsertWriter
         $table = $this->writer->writeTable($insert->getTable());
         $comment = AbstractBaseWriter::writeQueryComment($insert);
 
-        return $comment."INSERT INTO {$table} ($columns) VALUES ($values)";
+        $query = sprintf('INSERT%s', $insert->isIgnore() ? ' IGNORE' : ' ');
+        return $comment."$query INTO {$table} ($columns) VALUES ($values)";
     }
 
     /**

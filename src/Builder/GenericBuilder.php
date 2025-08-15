@@ -120,11 +120,12 @@ class GenericBuilder implements BuilderInterface
      *
      *@return AbstractBaseQuery
      */
-    public function insert(string|null $table = null, array|null $values = null)
+    public function insert(string|null $table = null, array|null $values = null, bool $ignore=false)
     {
-        return $this->injectBuilder(QueryFactory::createInsert($table, $values));
+        return $this->injectBuilder(QueryFactory::createInsert($table, $values, $ignore));
     }
 
+    
     /**
      * @param string $table
      * @param array  $values

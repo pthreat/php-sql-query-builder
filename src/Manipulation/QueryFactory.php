@@ -34,9 +34,9 @@ final class QueryFactory
      *
      * @return Insert
      */
-    public static function createInsert(string|null $table = null, array|null $values = null)
+    public static function createInsert(string|null $table = null, array|null $values = null, bool $ignore=false)
     {
-        return new Insert($table, $values);
+        return new Insert($table, $values, $ignore);
     }
 
     /**
