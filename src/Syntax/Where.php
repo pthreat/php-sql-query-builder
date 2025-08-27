@@ -313,14 +313,20 @@ class Where
 
     public function in($column, array $values) : Where
     {
-        $this->ins[$column] = $values;
+        $this->ins[] = [
+            'column' => $column,
+            'values' => $values
+        ];
 
         return $this;
     }
 
     public function notIn($column, array $values) : Where
     {
-        $this->notIns[$column] = $values;
+        $this->notIns[] = [
+            'column' => $column,
+            'values' => $values
+        ];
 
         return $this;
     }

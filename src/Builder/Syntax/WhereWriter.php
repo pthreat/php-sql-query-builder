@@ -130,13 +130,17 @@ class WhereWriter extends AbstractBaseWriter
     {
         $collection = [];
 
-        foreach ($where->$method() as $column => $values) {
-            $newColumn = array($column);
-            $column = SyntaxFactory::createColumn($newColumn, $where->getTable());
+        foreach ($where->$method() as $values) {
+            $comparisonValues = $values['values'];
+            $column = $values['column'];
+
+            if(!$column instanceof Column) {
+                $column = new Column($column, $where->getTable());
+            }
+
             $column = $this->columnWriter->writeColumn($column);
 
-            $values = $this->writer->writeValues($values);
-            $values = \implode(', ', $values);
+            $values = \implode(', ', $this->writer->writeValues($comparisonValues));
 
             $collection[] = "({$column} $operation ({$values}))";
         }
