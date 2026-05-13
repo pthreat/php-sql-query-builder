@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Author: Nil Portugués Calderó <contact@nilportugues.com>
  * Date: 6/3/14
@@ -82,10 +83,10 @@ class MySqlBuilder extends GenericBuilder
      */
     protected function wrapper($string, $char = '`')
     {
-        if (0 === strlen($string)) {
+        if (null === $string || 0 === strlen($string)) {
             return '';
         }
 
-        return $char.$string.$char;
+        return $char . $string . $char;
     }
 }
